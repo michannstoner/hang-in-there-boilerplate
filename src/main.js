@@ -1,5 +1,5 @@
 // query selector variables go here 👇
-var imagePoster = document.querySelector('.poster-img');
+var imagePoster = document.querySelector('.poster-image');
 var randomButton = document.querySelector('.show-random');
 var posterTitle = document.qeurySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
