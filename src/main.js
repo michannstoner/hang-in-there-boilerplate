@@ -1,5 +1,8 @@
 // query selector variables go here 👇
-
+var imagePoster = document.querySelector('.poster-img');
+var randomButton = document.querySelector('.show-random');
+var posterTitle = document.qeurySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -108,4 +111,3 @@ var currentPoster;
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-
