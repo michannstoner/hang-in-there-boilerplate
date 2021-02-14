@@ -128,7 +128,9 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
-randomPosterButton.addEventListener('click', makeRandomPoster);
+randomPosterButton.addEventListener('click', function() {
+  makeRandomPoster()
+});
 
 posterFormButton.addEventListener('click', function() {
   hideMainPage(createPosterSection)
@@ -144,6 +146,7 @@ backToMainButton.addEventListener('click', function() {
 
 showSavedButton.addEventListener('click', function() {
   hideMainPage(savedPosterSection)
+  savedPostersGrid.innerHTML = ''
   displaySavedPosters(savedPosters)
 });
 
@@ -160,9 +163,20 @@ function getRandomIndex(array) {
 };
 
 function makeRandomPoster() {
-  mainPosterImage.src = images[getRandomIndex(images)];
-  posterTitle.innerText = titles[getRandomIndex(titles)];
-  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  // mainPosterImage.src = images[getRandomIndex(images)];
+  // posterTitle.innerText = titles[getRandomIndex(titles)];
+  // posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitle = titles[getRandomIndex(titles)];
+  var randomQuote = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(randomImage, randomTitle, randomQuote);
+  displayCurrentPoster()
+};
+
+function displayCurrentPoster() {
+  mainPosterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
 };
 makeRandomPoster();
 
@@ -198,11 +212,14 @@ function saveCreatedPoster() {
 
 function displaySavedPosters(savedPosters) {
   for (var i = 0; i < savedPosters.length; i++) {
-  var savePosterFormat = `<article class="poster">
-    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
-    <h1 class="poster-title">${savedPosters[i].title}</h1>
-    <h3 class="poster-quote">${savedPosters[i].quote}</h3>
-  </article>`;
+  var savePosterFormat =
+    `
+    <article class="mini-poster">
+      <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+      <h2 class="poster-title">${savedPosters[i].title}</h2>
+      <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+    </article>
+    `;
   savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
   };
 };
