@@ -1,7 +1,4 @@
 // query selector variables go here 👇
-var mainPosterImage = document.querySelector('.poster-img');
-var posterTitle = document.querySelector('.poster-title');
-var posterQuote = document.querySelector('.poster-quote');
 
 //BUTTONS
 var randomPosterButton = document.querySelector('.show-random');
@@ -14,6 +11,9 @@ var showMyPosterButton = document.querySelector('.make-poster');
 var saveMyPosterButton = document.querySelector('.save-poster');
 
 // PAGES AND SECTIONS
+var mainPosterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
 var createPosterSection = document.querySelector('.poster-form');
 var mainPosterSection = document.querySelector('.main-poster');
 var savedPosterSection = document.querySelector('.saved-posters');
@@ -215,6 +215,7 @@ function displaySavedPosters(savedPosters) {
       <h4 class="poster-quote">${savedPosters[i].quote}</h4>
     </article>
     `
+
   savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
   }
 };
