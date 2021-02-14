@@ -1,19 +1,19 @@
 // query selector variables go here 👇
-var randomPosterButton = document.querySelector('.show-random');
-var mainPosterImage = document.querySelector('.poster-img');
-var posterTitle = document.querySelector('.poster-title');
-var posterQuote = document.querySelector('.poster-quote');
 
 //BUTTONS
+var randomPosterButton = document.querySelector('.show-random');
 var posterFormButton = document.querySelector('.show-form');
 var makePosterButton = document.querySelector('.make-poster');
 var neverMindButton = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
 var backToMainButton = document.querySelector('.back-to-main');
-var showMyPoster = document.querySelector('.make-poster');
-var saveMyPoster = document.querySelector('.save-poster');
+var showMyPosterButton = document.querySelector('.make-poster');
+var saveMyPosterButton = document.querySelector('.save-poster');
 
 // PAGES AND SECTIONS
+var mainPosterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
 var createPosterSection = document.querySelector('.poster-form');
 var mainPosterSection = document.querySelector('.main-poster');
 var savedPosterSection = document.querySelector('.saved-posters');
@@ -129,30 +129,30 @@ var currentPoster;
 
 // event listeners go here 👇
 randomPosterButton.addEventListener('click', function() {
-  makeRandomPoster()
+  makeRandomPoster();
 });
 
 posterFormButton.addEventListener('click', function() {
-  hideMainPage(createPosterSection)
+  hideMainPage(createPosterSection);
 });
 
 neverMindButton.addEventListener('click', function() {
-  takeBackToMain(createPosterSection)
+  takeBackToMain(createPosterSection);
 });
 
 backToMainButton.addEventListener('click', function() {
-  takeBackToMain(savedPosterSection)
+  takeBackToMain(savedPosterSection);
 });
 
 showSavedButton.addEventListener('click', function() {
-  hideMainPage(savedPosterSection)
-  savedPostersGrid.innerHTML = ''
-  displaySavedPosters(savedPosters)
+  hideMainPage(savedPosterSection);
+  savedPostersGrid.innerHTML = '';
+  displaySavedPosters(savedPosters);
 });
 
-showMyPoster.addEventListener('click', displayMyPoster);
+showMyPosterButton.addEventListener('click', displayMyPoster);
 
-saveMyPoster.addEventListener('click', saveCreatedPoster);
+saveMyPosterButton.addEventListener('click', saveCreatedPoster);
 
 
 
@@ -163,14 +163,11 @@ function getRandomIndex(array) {
 };
 
 function makeRandomPoster() {
-  // mainPosterImage.src = images[getRandomIndex(images)];
-  // posterTitle.innerText = titles[getRandomIndex(titles)];
-  // posterQuote.innerText = quotes[getRandomIndex(quotes)];
   var randomImage = images[getRandomIndex(images)];
   var randomTitle = titles[getRandomIndex(titles)];
   var randomQuote = quotes[getRandomIndex(quotes)];
   currentPoster = new Poster(randomImage, randomTitle, randomQuote);
-  displayCurrentPoster()
+  displayCurrentPoster();
 };
 
 function displayCurrentPoster() {
@@ -195,19 +192,17 @@ function displayMyPoster() {
   event.preventDefault();
   mainPosterSection.classList.remove('hidden');
   createPosterSection.classList.add('hidden');
-  mainPosterImage.src = submittedURL.value;
-  posterTitle.innerText = submittedTitle.value;
-  posterQuote.innerText = submittedQuote.value;
   images.push(submittedURL.value);
   titles.push(submittedTitle.value);
   quotes.push(submittedQuote.value);
   currentPoster = new Poster(submittedURL.value, submittedTitle.value, submittedQuote.value);
-}
+  displayCurrentPoster();
+};
 
 function saveCreatedPoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
-  };
+  }
 };
 
 function displaySavedPosters(savedPosters) {
@@ -219,7 +214,8 @@ function displaySavedPosters(savedPosters) {
       <h2 class="poster-title">${savedPosters[i].title}</h2>
       <h4 class="poster-quote">${savedPosters[i].quote}</h4>
     </article>
-    `;
+    `
+
   savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
-  };
+  }
 };
