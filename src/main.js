@@ -17,6 +17,7 @@ var saveMyPoster = document.querySelector('.save-poster');
 var createPosterSection = document.querySelector('.poster-form');
 var mainPosterSection = document.querySelector('.main-poster');
 var savedPosterSection = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 // FORM INPUTS
 var submittedURL = document.getElementById('poster-image-url');
@@ -127,7 +128,9 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
-randomPosterButton.addEventListener('click', makeRandomPoster);
+randomPosterButton.addEventListener('click', function() {
+  makeRandomPoster()
+});
 
 posterFormButton.addEventListener('click', function() {
   hideMainPage(createPosterSection)
@@ -143,6 +146,8 @@ backToMainButton.addEventListener('click', function() {
 
 showSavedButton.addEventListener('click', function() {
   hideMainPage(savedPosterSection)
+  savedPostersGrid.innerHTML = ''
+  displaySavedPosters(savedPosters)
 });
 
 showMyPoster.addEventListener('click', displayMyPoster);
@@ -158,9 +163,20 @@ function getRandomIndex(array) {
 };
 
 function makeRandomPoster() {
-  mainPosterImage.src = images[getRandomIndex(images)];
-  posterTitle.innerText = titles[getRandomIndex(titles)];
-  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  // mainPosterImage.src = images[getRandomIndex(images)];
+  // posterTitle.innerText = titles[getRandomIndex(titles)];
+  // posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitle = titles[getRandomIndex(titles)];
+  var randomQuote = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(randomImage, randomTitle, randomQuote);
+  displayCurrentPoster()
+};
+
+function displayCurrentPoster() {
+  mainPosterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
 };
 makeRandomPoster();
 
@@ -177,15 +193,33 @@ function takeBackToMain(page) {
 
 function displayMyPoster() {
   event.preventDefault();
-  mainPosterSection.classList.toggle('hidden');
+  mainPosterSection.classList.remove('hidden');
+  createPosterSection.classList.add('hidden');
   mainPosterImage.src = submittedURL.value;
   posterTitle.innerText = submittedTitle.value;
   posterQuote.innerText = submittedQuote.value;
-}
-
-function saveCreatedPoster() {
   images.push(submittedURL.value);
   titles.push(submittedTitle.value);
   quotes.push(submittedQuote.value);
-  currentPoster = new Poster(Date.now(), submittedURL.value, submittedTitle.value, submittedQuote.value);
+  currentPoster = new Poster(submittedURL.value, submittedTitle.value, submittedQuote.value);
 }
+
+function saveCreatedPoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  };
+};
+
+function displaySavedPosters(savedPosters) {
+  for (var i = 0; i < savedPosters.length; i++) {
+  var savePosterFormat =
+    `
+    <article class="mini-poster">
+      <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+      <h2 class="poster-title">${savedPosters[i].title}</h2>
+      <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+    </article>
+    `;
+  savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
+  };
+};
