@@ -154,6 +154,8 @@ showMyPosterButton.addEventListener('click', displayMyPoster);
 
 saveMyPosterButton.addEventListener('click', saveCreatedPoster);
 
+savedPostersGrid.addEventListener('dblclick', deleteSavedPoster);
+
 
 
 // functions and event handlers go here 👇
@@ -205,14 +207,19 @@ function saveCreatedPoster() {
   }
 };
 
+function deleteSavedPoster(event) {
+  
+
+}
+
 function displaySavedPosters(savedPosters) {
   for (var i = 0; i < savedPosters.length; i++) {
   var savePosterFormat =
     `
-    <article class="mini-poster">
-      <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
-      <h2 class="poster-title">${savedPosters[i].title}</h2>
-      <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+    <article ondblclick='deleteSavedPoster()' class="mini-poster" id=${savedPosters[i].id}>
+      <img class="poster-img" id=${savedPosters[i].id} src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+      <h2 class="poster-title" id=${savedPosters[i].id}>${savedPosters[i].title}</h2>
+      <h4 class="poster-quote" id=${savedPosters[i].id} >${savedPosters[i].quote}</h4>
     </article>
     `
 
