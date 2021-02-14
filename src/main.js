@@ -163,9 +163,6 @@ function getRandomIndex(array) {
 };
 
 function makeRandomPoster() {
-  // mainPosterImage.src = images[getRandomIndex(images)];
-  // posterTitle.innerText = titles[getRandomIndex(titles)];
-  // posterQuote.innerText = quotes[getRandomIndex(quotes)];
   var randomImage = images[getRandomIndex(images)];
   var randomTitle = titles[getRandomIndex(titles)];
   var randomQuote = quotes[getRandomIndex(quotes)];
