@@ -17,6 +17,7 @@ var saveMyPoster = document.querySelector('.save-poster');
 var createPosterSection = document.querySelector('.poster-form');
 var mainPosterSection = document.querySelector('.main-poster');
 var savedPosterSection = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 // FORM INPUTS
 var submittedURL = document.getElementById('poster-image-url');
@@ -143,6 +144,7 @@ backToMainButton.addEventListener('click', function() {
 
 showSavedButton.addEventListener('click', function() {
   hideMainPage(savedPosterSection)
+  displaySavedPosters(savedPosters)
 });
 
 showMyPoster.addEventListener('click', displayMyPoster);
@@ -191,5 +193,16 @@ function displayMyPoster() {
 function saveCreatedPoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
+  };
+};
+
+function displaySavedPosters(savedPosters) {
+  for (var i = 0; i < savedPosters.length; i++) {
+  var savePosterFormat = `<article class="poster">
+    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+    <h1 class="poster-title">${savedPosters[i].title}</h1>
+    <h3 class="poster-quote">${savedPosters[i].quote}</h3>
+  </article>`;
+  savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
   };
 };
