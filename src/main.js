@@ -131,19 +131,19 @@ randomPosterButton.addEventListener('click', function() {
 });
 
 posterFormButton.addEventListener('click', function() {
-  hideMainPage(createPosterSection);
+  toggleMain(createPosterSection);
 });
 
 neverMindButton.addEventListener('click', function() {
-  takeBackToMain(createPosterSection);
+  toggleMain(createPosterSection);
 });
 
 backToMainButton.addEventListener('click', function() {
-  takeBackToMain(savedPosterSection);
+  toggleMain(savedPosterSection);
 });
 
 showSavedButton.addEventListener('click', function() {
-  hideMainPage(savedPosterSection);
+  toggleMain(savedPosterSection);
   savedPostersGrid.innerHTML = '';
   displaySavedPosters(savedPosters);
 });
@@ -175,15 +175,9 @@ function displayCurrentPoster() {
 };
 makeRandomPoster();
 
-function hideMainPage(page) {
-  page.classList.remove('hidden');
-  mainPosterSection.classList.add('hidden');
-};
-
-function takeBackToMain(page) {
-  page.classList.add('hidden');
-  mainPosterSection.classList.remove('hidden');
-  makeRandomPoster();
+function toggleMain(page) {
+  page.classList.toggle('hidden');
+  mainPosterSection.classList.toggle('hidden');
 };
 
 function displayMyPoster() {
@@ -203,19 +197,16 @@ function saveCreatedPoster() {
   }
 };
 
-
-
 function deleteSavedPoster() {
   var posterToDelete = event.target.closest('.mini-poster');
-    for (var i = 0; i < savedPosters.length; i++) {
-      if (parseInt(posterToDelete.id) === savedPosters[i].id) {
-        savedPosters.splice(i, 1);
-        savedPostersGrid.innerHTML = '';
-        displaySavedPosters(savedPosters);
-      }
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (parseInt(posterToDelete.id) === savedPosters[i].id) {
+      savedPosters.splice(i, 1);
+      savedPostersGrid.innerHTML = '';
+      displaySavedPosters(savedPosters);
     }
   }
-
+};
 
 function displaySavedPosters(savedPosters) {
   for (var i = 0; i < savedPosters.length; i++) {
@@ -227,7 +218,6 @@ function displaySavedPosters(savedPosters) {
       <h4 class="poster-quote" id=${savedPosters[i].id} >${savedPosters[i].quote}</h4>
     </article>
     `
-
-  savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat)
+  savedPostersGrid.insertAdjacentHTML('afterbegin', savePosterFormat);
   }
 };
