@@ -1,6 +1,6 @@
 # Hang In There
 
-## Are you feeling down? Tired from a long week? Need a little pick-me-up?
+### Are you feeling down? Tired from a long week? Need a little pick-me-up?
 
 Created by [Beth Meeker](https://github.com/meekb), [Marceline Ball](https://github.com/MarcelineBall), and [Michann Stoner](https://github.com/michannstoner), **Hang In There** is an application created to generate random inspirational posters for the days you need it most.
 
