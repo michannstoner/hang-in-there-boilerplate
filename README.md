@@ -1,13 +1,13 @@
 # Hang In There
 
-A boilerplate repo. 
+Are you feeling down? Tired from a long week? Need a little pick-me-up?
 
-## Set Up
+Created by [Beth Meeker](https://github.com/meekb), [Marceline Ball](https://github.com/MarcelineBall), and [Michann Stoner](https://github.com/michannstoner), **Hang In There** is an application created to generate random inspirational posters for the days you need it most.
 
-1. One teammate: fork this repository
-2. Go to settings and turn on GitHub Pages for this repository
-3. All teammates: clone down this repository
-4. `cd` into the repository
-5. Run `open index.html` to view it in the browser
+Have an idea for your own poster? We've got you!
+Want to save posters for later? We've got you!
 
-Project spec & rubric can be found [here](https://frontend.turing.io/projects/module-1/hang-in-there.html)
+We know you're eager, so we won't keep you any longer. Click [here](https://michannstoner.github.io/hang-in-there-boilerplate/) to see **Hang In There** in action!
+
+
+[Hang In There!](https://media.tenor.com/images/657487e5aadb99421e0ec353ae5f2f39/tenor.gif)
